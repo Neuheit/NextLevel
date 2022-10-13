@@ -341,6 +341,7 @@
 -r:"Library/Bee/artifacts/500b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scipts/BenCamera.cs"
 "Assets/Scipts/CameraControl.cs"
+"Assets/Scipts/EnemyChase.cs"
 "Assets/Scipts/PlayerControls.cs"
 -langversion:9.0
 
