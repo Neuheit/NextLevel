@@ -4,30 +4,66 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    float XMouse = 0;
-    float YMouse = 0;
+    public float turnSpeed = 4.0f;
+    public float moveSpeed = 2.0f;
+    public float minTurnAngle = -90.0f;
+    public float maxTurnAngle = 90.0f;
 
-    public Transform Player;
-
-    float Sensitivity = 2;
-
-    // Start is called before the first frame update
-    void Start()
+    public Transform player;
+    private float rotX;
+    void Update ()
     {
-
+        MouseAiming();
+        KeyboardMovement();
     }
 
-    // Update is called once per frame
-    void Update()
+    void MouseAiming ()
     {
-        XMouse += Input.GetAxis("Mouse X") * Sensitivity;
-        YMouse -= Input.GetAxis("Mouse Y") * Sensitivity;
+        // get the mouse inputs
+        float y = Input.GetAxis("Mouse X") * turnSpeed;
+        rotX += Input.GetAxis("Mouse Y") * turnSpeed;
+        // clamp the vertical rotation
+        rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
+        // rotate the camera
+        transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
+        //player.transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
+    }
+    void KeyboardMovement ()
+    {
+        Vector3 dir = new Vector3(0, 0, 0);
+        
+        dir.x = Input.GetAxis("Horizontal");
+        dir.y = Input.GetAxis("Vertical");
 
-        Debug.Log(XMouse);
+        //transform.Translate(dir * moveSpeed * Time.deltaTime);
 
-        YMouse = Mathf.Clamp(YMouse, -90f, 90f);
+        /*
+        if(Input.anyKey)
+        {
+            Vector3 dir = new Vector3(0, 0, 0);
+            if(Input.GetKey(KeyCode.W))
+            {
+                dir.z = 2f;
+            }
+            if(Input.GetKey(KeyCode.S))
+            {
+                dir.z = -2f;
+            }
+            if(Input.GetKey(KeyCode.A))
+            {
+                dir.x = -2f;
+            }
+            if(Input.GetKey(KeyCode.D))
+            {
+                dir.x = 2f;
+            }
 
-        transform.localEulerAngles = new Vector3(YMouse, 0, 0);
-        Player.localEulerAngles = new Vector3(0, XMouse, 0);
+            transform.Translate(dir * moveSpeed * Time.deltaTime);
+            //player.transform.Translate(dir * moveSpeed * Time.deltaTime);
+        }
+        */
+            
+        //dir.x = Input.GetAxis("Horizontal");
+        //dir.y = Input.GetAxis("Vertical");
     }
 }
