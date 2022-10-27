@@ -48,10 +48,8 @@ public class PlayerControls : MonoBehaviour
         // This will detect sideways movement
         verticalMovement = Input.GetAxisRaw("Vertical");
 
-        Debug.Log(cam.transform.forward);
-
         // Calculate the direction to move the player
-        Vector3 movementDirection = cam.transform.forward * verticalMovement + cam.transform.right * horizontalMovement;
+        Vector3 movementDirection = new Vector3(horizontalMovement, 0, verticalMovement);
         
         // Move the player
         rb.transform.Translate(movementDirection * speed * Time.deltaTime);
