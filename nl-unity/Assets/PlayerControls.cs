@@ -32,7 +32,7 @@ public class PlayerControls : MonoBehaviour
         rb.freezeRotation = true;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame             
     void Update()
     {
         float y = Input.GetAxis("Mouse X") * turnSpeed;
@@ -59,5 +59,12 @@ public class PlayerControls : MonoBehaviour
 
         // Apply drag
         //rb.drag = drag;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("BuffBox"))
+        {
+            rb.AddForce(new Vector3(0, 10f, 0), ForceMode.VelocityChange); 
+        }
     }
 }
