@@ -25,9 +25,13 @@ public class LevelGenerator : MonoBehaviour
         //if player position y is within a minimun of 3 platforms from the highest platform
         if(DistanceY(player.position.y, lastSpawnPosition.y) < maxOffset.y * 2){
             SpawnLevel();
-            Debug.Log(DistanceY(player.position.y, levels.Peek().position.y));
             while(DistanceY(player.position.y, levels.Peek().position.y) > maxOffset.y * 3){
-                Destroy(levels.Dequeue().gameObject);
+                Transform curr = levels.Dequeue();
+                if(curr == initialLevel){
+                    curr.gameObject.SetActive(false);
+                }else{
+                    Destroy(curr.gameObject);
+                }
             }
         }
     }
@@ -37,7 +41,7 @@ public class LevelGenerator : MonoBehaviour
                             Random.Range(minOffset.y, maxOffset.y),
                             Random.Range(minOffset.z, maxOffset.z)
                         );
-        lastSpawnPosition = lastSpawnPosition + offset;
+        lastSpawnPosition = new Vector3(initialLevel.position.x, lastSpawnPosition.y, initialLevel.position.z) + offset;
         Transform newLevel = Instantiate(level, lastSpawnPosition, Quaternion.identity) as Transform;
         levels.Enqueue(newLevel);
     }
