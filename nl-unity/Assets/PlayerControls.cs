@@ -64,7 +64,8 @@ public class PlayerControls : MonoBehaviour
     {
         if(other.gameObject.CompareTag("BuffBox"))
         {
-            rb.AddForce(new Vector3(0, 10f, 0), ForceMode.VelocityChange); 
+            rb.AddForce(new Vector3(0, 21f, 0), ForceMode.VelocityChange); 
+            Destroy(other.gameObject);
         }
     }
 }
