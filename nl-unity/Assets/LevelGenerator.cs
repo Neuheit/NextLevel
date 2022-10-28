@@ -27,7 +27,7 @@ public class LevelGenerator : MonoBehaviour
             SpawnLevel();
             Debug.Log(DistanceY(player.position.y, levels.Peek().position.y));
             while(DistanceY(player.position.y, levels.Peek().position.y) > maxOffset.y * 3){
-                levels.Dequeue().gameObject.SetActive(false);
+                Destroy(levels.Dequeue().gameObject);
             }
         }
     }
