@@ -12,8 +12,13 @@ GameObject:
   - component: {fileID: -9062462593269566606}
   - component: {fileID: 7112541395429557946}
   m_Layer: 0
+<<<<<<< Updated upstream:nl-unity/Assets/Prefabs/Floor3x3.prefab
   m_Name: Floor3x3
   m_TagString: Untagged
+=======
+  m_Name: Level
+  m_TagString: nextLevel
+>>>>>>> Stashed changes:nl-unity/Assets/Prefabs/Level.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
