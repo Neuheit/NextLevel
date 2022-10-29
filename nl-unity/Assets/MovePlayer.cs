@@ -1,0 +1,64 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MovePlayer : MonoBehaviour
+{
+    Vector3 moveDir;
+    float speed = 15;
+    float jumpSpeed = 6000f;
+    float gravity = 200f;
+
+    Rigidbody rb;
+
+    bool isGrounded;
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        Move();
+    }
+
+    void OnCollisionStay(Collision other) 
+    {
+        isGrounded = true;
+    }
+
+    // Update is called once per frame
+    void Move()
+    {
+        if(transform.position.y < 6f)
+            transform.position = new Vector3(transform.position.x, 6f, transform.position.z);
+        Vector3 dir = new Vector3(0, 0, 0);
+        dir.x = Input.GetAxis("Horizontal");
+        dir.z = Input.GetAxis("Vertical");
+        transform.Translate(dir * speed * Time.deltaTime);
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            
+        /*
+        var movX = Input.GetAxis("Horizontal");
+        var movZ = Input.GetAxis("Vertical");
+
+        moveDir = new Vector3(movX, 0, movZ);
+        moveDir = transform.TransformDirection(moveDir);
+
+        moveDir *= speed;
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            moveDir.y = jumpSpeed;
+        }
+
+        moveDir.y -= gravity * speed * Time.deltaTime;
+
+        charCon.Move(moveDir * Time.deltaTime);
+        */
+    }
+}
