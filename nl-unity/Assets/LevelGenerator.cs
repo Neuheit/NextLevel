@@ -8,8 +8,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform initialLevel;
     [SerializeField] private Transform level;
     [SerializeField] private Transform player;
-    [SerializeField] private Vector3 maxOffset = new Vector3( 40, 20,  40);
-    [SerializeField] private Vector3 minOffset = new Vector3(-40, 10, -40);
+    [SerializeField] private Vector3 maxOffset = new Vector3( 20, 20,  20);
+    [SerializeField] private Vector3 minOffset = new Vector3(-20, 20, -20);
     private Vector3 lastSpawnPosition;
 
     private Queue<Transform> levels = new Queue<Transform>();
