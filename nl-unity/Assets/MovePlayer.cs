@@ -61,4 +61,13 @@ public class MovePlayer : MonoBehaviour
         charCon.Move(moveDir * Time.deltaTime);
         */
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("BuffBox"))
+        {
+            rb.AddForce(new Vector3(0, 45f, 0), ForceMode.VelocityChange);
+            Destroy(other.gameObject);
+        }
+    }
 }
