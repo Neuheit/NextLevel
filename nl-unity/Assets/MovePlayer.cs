@@ -9,6 +9,8 @@ public class MovePlayer : MonoBehaviour
     float jumpSpeed = 6000f;
     float gravity = 200f;
 
+    float height;
+
     Rigidbody rb;
 
     bool isGrounded;
@@ -26,22 +28,31 @@ public class MovePlayer : MonoBehaviour
 
     void OnCollisionStay(Collision other) 
     {
-        isGrounded = true;
+        //isGrounded = true;
     }
 
     // Update is called once per frame
     void Move()
     {
-        if(transform.position.y < 6f)
-            transform.position = new Vector3(transform.position.x, 6f, transform.position.z);
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out var hit, 1f) && !isGrounded)
+        {
+            height = hit.distance;
+            isGrounded = true;
+        }
+
+        if(isGrounded)
+            transform.position = new Vector3(transform.position.x, height, transform.position.z);
+
         Vector3 dir = new Vector3(0, 0, 0);
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
         transform.Translate(dir * speed * Time.deltaTime);
         
         if(Input.GetKeyDown(KeyCode.Space))
+        {
             rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-            
+            isGrounded = false;
+        }
         /*
         var movX = Input.GetAxis("Horizontal");
         var movZ = Input.GetAxis("Vertical");
