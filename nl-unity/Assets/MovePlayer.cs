@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
+    public AudioSource jumpingAudio;
+    public AudioSource walkingAudio;
+
     Vector3 moveDir;
     float speed = 15;
     float jumpSpeed = 6000f;
@@ -14,6 +17,7 @@ public class MovePlayer : MonoBehaviour
     Rigidbody rb;
 
     bool isGrounded;
+    bool isWalking;
 
     // Start is called before the first frame update
     void Awake()
@@ -48,11 +52,34 @@ public class MovePlayer : MonoBehaviour
         Vector3 dir = new Vector3(0, 0, 0);
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
+
+        Debug.Log(dir);
+
+        if(dir != Vector3.zero)
+        {
+            if(!isWalking)
+            {
+                isWalking = true;
+                walkingAudio.Play();
+            }
+
+        }
+        else
+        {
+            if(isWalking)
+            {
+                isWalking = false;
+                walkingAudio.Stop();
+            }
+                
+        }
+
         transform.Translate(dir * speed * Time.deltaTime);
         
         if(Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            jumpingAudio.Play();
         }
         /*
         var movX = Input.GetAxis("Horizontal");
