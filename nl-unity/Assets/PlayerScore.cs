@@ -10,12 +10,12 @@ public class PlayerScore : MonoBehaviour
 
     void Start()
     {
-        playerScore.text = "Score: " + score;
+        playerScore.text = "Score - " + score;
     }
 
    void Update()
     {
-        playerScore.text = "Score: " + score;
+        playerScore.text = "Score - " + score;
     }
 
     void OnCollisionExit(Collision collision)
