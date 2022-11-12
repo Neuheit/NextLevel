@@ -34,6 +34,7 @@ public class MovePlayer : MonoBehaviour
     // Update is called once per frame
     void Move()
     {
+        /*
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out var hit, 1f) && !isGrounded)
         {
             height = hit.distance;
@@ -42,6 +43,7 @@ public class MovePlayer : MonoBehaviour
 
         if(isGrounded)
             transform.position = new Vector3(transform.position.x, height, transform.position.z);
+        */
 
         Vector3 dir = new Vector3(0, 0, 0);
         dir.x = Input.GetAxis("Horizontal");
@@ -51,7 +53,6 @@ public class MovePlayer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-            isGrounded = false;
         }
         /*
         var movX = Input.GetAxis("Horizontal");

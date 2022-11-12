@@ -5,7 +5,6 @@ using UnityEngine;
 public class LookAtMouse : MonoBehaviour
 {
     [SerializeField] Transform player;
-    [SerializeField] Transform arms;
 
     [SerializeField] float mouseSens;
 
@@ -24,15 +23,12 @@ public class LookAtMouse : MonoBehaviour
         var rotAmountX = floatX * mouseSens;
         var rotAmountY = floatY * mouseSens;
 
-        var rotArms = arms.transform.rotation.eulerAngles;
         var rotPlayer = player.transform.rotation.eulerAngles;
 
-        rotArms.x -= rotAmountY;
-        rotArms.z = 0;
-
         rotPlayer.y += rotAmountX;
+        rotPlayer.x -= rotAmountY;
+        rotPlayer.z = 0;
 
-        arms.rotation = Quaternion.Euler(rotArms);
         player.rotation = Quaternion.Euler(rotPlayer);
     }
 }
