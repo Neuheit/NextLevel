@@ -804,7 +804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialLevel: {fileID: 1303432223}
   level: {fileID: 416390, guid: fcca8f1f7bac7744c8b6d1558db8a201, type: 3}
-  player: {fileID: 0}
+  player: {fileID: 812743250}
   maxOffset: {x: 40, y: 20, z: 40}
   minOffset: {x: -40, y: 10, z: -40}
 --- !u!4 &1226856011
