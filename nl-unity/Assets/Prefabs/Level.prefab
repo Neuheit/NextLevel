@@ -15,7 +15,7 @@ GameObject:
   m_TagString: nextLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &416390
 Transform:
@@ -97,6 +97,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -171,6 +176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
@@ -262,6 +272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -336,6 +351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
@@ -412,6 +432,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -486,6 +511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor_01 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
@@ -562,6 +592,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -637,6 +672,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}
       propertyPath: m_RootOrder
@@ -711,6 +751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 794084253574438802, guid: 68a0d3ced9ae10443babd32c1425ebd5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 794084253574842532, guid: 68a0d3ced9ae10443babd32c1425ebd5,
         type: 3}

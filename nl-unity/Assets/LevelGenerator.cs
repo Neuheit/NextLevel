@@ -8,8 +8,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform initialLevel;
     [SerializeField] private Transform level;
     [SerializeField] private Transform player;
-    [SerializeField] private Vector3 maxOffset = new Vector3( 20, 20,  20);
-    [SerializeField] private Vector3 minOffset = new Vector3(-20, 20, -20);
+    public  Vector3 maxOffset = new Vector3( 20, 20,  20);
+    public  Vector3 minOffset = new Vector3(-20, 20, -20);
     private Vector3 lastSpawnPosition;
 
     private Queue<Transform> levels = new Queue<Transform>();
@@ -43,6 +43,11 @@ public class LevelGenerator : MonoBehaviour
                         );
         lastSpawnPosition = new Vector3(initialLevel.position.x, lastSpawnPosition.y, initialLevel.position.z) + offset;
         Transform newLevel = Instantiate(level, lastSpawnPosition, Quaternion.identity) as Transform;
+        int rand = Random.Range(0, 5);
+        if(rand == 0){//20% percent chance
+            Debug.Log("generated");
+            newLevel.gameObject.AddComponent<MoveLevel>();
+        }
         levels.Enqueue(newLevel);
     }
 

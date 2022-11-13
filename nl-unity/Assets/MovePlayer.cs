@@ -53,7 +53,6 @@ public class MovePlayer : MonoBehaviour
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
 
-        Debug.Log(dir);
 
         if(dir != Vector3.zero)
         {

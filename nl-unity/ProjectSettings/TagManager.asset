@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - nextLevel
   - BuffBox
+  - LevelGenerator
   layers:
   - Default
   - TransparentFX
