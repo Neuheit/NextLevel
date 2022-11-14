@@ -53,33 +53,39 @@ public class MovePlayer : MonoBehaviour
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
 
-
-        if(dir != Vector3.zero)
-        {
-            if(!isWalking)
-            {
-                isWalking = true;
-                walkingAudio.Play();
-            }
-
-        }
-        else
-        {
-            if(isWalking)
-            {
-                isWalking = false;
-                walkingAudio.Stop();
-            }
-                
-        }
-
         transform.Translate(dir * speed * Time.deltaTime);
-        
-        if(Input.GetKeyDown(KeyCode.Space))
+
+        Vector3 dwn = transform.TransformDirection(Vector3.down);
+        if (Physics.Raycast(transform.position, dwn, 5))
         {
-            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-            jumpingAudio.Play();
+            if(dir != Vector3.zero)
+            {
+                if(!isWalking)
+                {
+                    isWalking = true;
+                    walkingAudio.Play();
+                }
+
+            }
+            else
+            {
+                if(isWalking)
+                {
+                    isWalking = false;
+                    walkingAudio.Stop();
+                }
+                
+            }
+        
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+                jumpingAudio.Play();
+            }
         }
+
+
+        
         /*
         var movX = Input.GetAxis("Horizontal");
         var movZ = Input.GetAxis("Vertical");
@@ -105,6 +111,7 @@ public class MovePlayer : MonoBehaviour
         if(other.gameObject.CompareTag("BuffBox"))
         {
             rb.AddForce(new Vector3(0, 45f, 0), ForceMode.VelocityChange);
+            jumpingAudio.Play();
             Destroy(other.gameObject);
         }
     }

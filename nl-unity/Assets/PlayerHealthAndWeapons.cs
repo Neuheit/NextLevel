@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PlayerHealthAndWeapons : MonoBehaviour
 {
+    public AudioSource AttackAudio;
+    public AudioSource DeathAudio;
     public HealthSystem healthSys_;
+    public GameObject player;
     public Weapon meleeAttack_;
     private float attackInterval_;
     private float timeBetweenAttacks_;
@@ -16,17 +18,44 @@ public class PlayerHealthAndWeapons : MonoBehaviour
         timeBetweenAttacks_ = 0.5f;
     }
 
-    private void LateUpdate(){
+    private void Update()
+    {
+        if(healthSys_.GetHealth() <= 0)
+        {
+            var collider = player.GetComponent<CapsuleCollider>();
 
+            if(!collider.isTrigger)
+            {
+                collider.isTrigger = true;
+                DeathAudio.Play();
+            }
+            //death logic here
+        }
     }
-    private void OnTriggerStay(Collider other){
+
+    private void OnTriggerStay(Collider other)
+    {
         //dealing damage to ememies
-        if(other.gameObject.CompareTag("Enemy")){
-            Debug.Log("here");
+        if(other.gameObject.CompareTag("Enemy"))
+        {
             if(Time.time > attackInterval_ && Input.GetAxis("Fire1") != 0){
+                AttackAudio.Play();
                 other.GetComponent<EnemyHealthAndWeapons>().healthSys_.ReduceHealth(meleeAttack_.DamageAmount());
                 attackInterval_ = Time.time + timeBetweenAttacks_;
             }
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthSys_.ReduceHealth (damage);
     }
 }
