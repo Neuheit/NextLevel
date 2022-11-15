@@ -8,6 +8,9 @@ TagManager:
   - nextLevel
   - BuffBox
   - LevelGenerator
+  - BuffBox+
+  - BuffBox1
+  - DeBuff
   layers:
   - Default
   - TransparentFX

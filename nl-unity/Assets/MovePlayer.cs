@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,39 +53,34 @@ public class MovePlayer : MonoBehaviour
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
 
-        transform.Translate(dir * speed * Time.deltaTime);
+        Debug.Log(dir);
 
-        Vector3 dwn = transform.TransformDirection(Vector3.down);
-        if (Physics.Raycast(transform.position, dwn, 5))
+        if(dir != Vector3.zero)
         {
-            if(dir != Vector3.zero)
+            if(!isWalking)
             {
-                if(!isWalking)
-                {
-                    isWalking = true;
-                    walkingAudio.Play();
-                }
+                isWalking = true;
+                walkingAudio.Play();
+            }
 
-            }
-            else
+        }
+        else
+        {
+            if(isWalking)
             {
-                if(isWalking)
-                {
-                    isWalking = false;
-                    walkingAudio.Stop();
-                }
+                isWalking = false;
+                walkingAudio.Stop();
+            }
                 
-            }
-        
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
-                jumpingAudio.Play();
-            }
         }
 
-
+        transform.Translate(dir * speed * Time.deltaTime);
         
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            jumpingAudio.Play();
+        }
         /*
         var movX = Input.GetAxis("Horizontal");
         var movZ = Input.GetAxis("Vertical");
@@ -108,10 +103,21 @@ public class MovePlayer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("BuffBox"))
+        if(other.gameObject.CompareTag("BuffBox"))//High Jump Buff
         {
             rb.AddForce(new Vector3(0, 45f, 0), ForceMode.VelocityChange);
             jumpingAudio.Play();
+            Destroy(other.gameObject);
+        }
+        else if(other.gameObject.CompareTag("BuffBox+"))//Super High Jump Buff
+        {
+            rb.AddForce(new Vector3(0, 60f, 0), ForceMode.VelocityChange);
+            jumpingAudio.Play();
+            Destroy(other.gameObject);
+        }
+        else if(other.gameObject.CompareTag("DeBuff"))//Displacement Debuff
+        {
+            rb.transform.position += new Vector3(20f,15f,0);
             Destroy(other.gameObject);
         }
     }
