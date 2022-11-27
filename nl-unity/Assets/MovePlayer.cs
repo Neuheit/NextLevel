@@ -49,6 +49,8 @@ public class MovePlayer : MonoBehaviour
             transform.position = new Vector3(transform.position.x, height, transform.position.z);
         */
 
+        var grounded = Physics.Raycast(transform.position, Vector3.down, 3);
+
         Vector3 dir = new Vector3(0, 0, 0);
         dir.x = Input.GetAxis("Horizontal");
         dir.z = Input.GetAxis("Vertical");
@@ -57,10 +59,16 @@ public class MovePlayer : MonoBehaviour
 
         if(dir != Vector3.zero)
         {
-            if(!isWalking)
+            if(!isWalking && grounded)
             {
                 isWalking = true;
                 walkingAudio.Play();
+            }
+
+            if(!grounded)
+            {
+                walkingAudio.Stop();
+                isWalking = false;
             }
 
         }
@@ -76,7 +84,7 @@ public class MovePlayer : MonoBehaviour
 
         transform.Translate(dir * speed * Time.deltaTime);
         
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
             jumpingAudio.Play();

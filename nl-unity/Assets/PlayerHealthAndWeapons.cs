@@ -31,7 +31,12 @@ public class PlayerHealthAndWeapons : MonoBehaviour
                 collider.isTrigger = true;
                 DeathAudio.Play();
             }
-            //death logic here
+        }
+
+        if(player.transform.position.y <= -50)
+        {
+            Debug.Log("Dies here");
+            //insert death logic
         }
     }
 
