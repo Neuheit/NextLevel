@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthAndWeapons : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerHealthAndWeapons : MonoBehaviour
     private float attackInterval_;
     private float timeBetweenAttacks_;
 
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Text restartText;
 
     private void Awake()
     {
@@ -18,6 +21,9 @@ public class PlayerHealthAndWeapons : MonoBehaviour
         meleeAttack_     = new Weapon(20);
         attackInterval_  = 0;
         timeBetweenAttacks_ = 0.5f;
+
+        gameOverPanel.SetActive(false);
+        restartText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -30,6 +36,7 @@ public class PlayerHealthAndWeapons : MonoBehaviour
             {
                 collider.isTrigger = true;
                 DeathAudio.Play();
+<<<<<<< Updated upstream
             }
         }
 
@@ -37,6 +44,13 @@ public class PlayerHealthAndWeapons : MonoBehaviour
         {
             Debug.Log("Dies here");
             //insert death logic
+=======
+            }
+            //death logic here
+            gameOverPanel.SetActive(true);
+            restartText.gameObject.SetActive(true);
+
+>>>>>>> Stashed changes
         }
     }
 

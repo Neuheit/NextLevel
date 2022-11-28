@@ -11,6 +11,7 @@ TagManager:
   - BuffBox+
   - BuffBox1
   - DeBuff
+  - gameOverScreen
   layers:
   - Default
   - TransparentFX

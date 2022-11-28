@@ -48,7 +48,7 @@ public class EnemyAttack : MonoBehaviour
         //dealing damage to ememies
         if(other.gameObject == player)
         {
-            Debug.Log("here1");
+            //Debug.Log("here1");
 
             var renderer = GetComponent<MeshRenderer>();
 
