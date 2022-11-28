@@ -86,7 +86,7 @@ public class MovePlayer : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rb.AddForce(Vector3.up * speed, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * speed * 1.5f, ForceMode.Impulse);
             jumpingAudio.Play();
         }
         /*

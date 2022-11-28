@@ -12,6 +12,8 @@ public class PlayerHealthAndWeapons : MonoBehaviour
     private float attackInterval_;
     private float timeBetweenAttacks_;
 
+    public float lastPlatformReachedY;
+
     [SerializeField] public GameObject gameOverPanel;
     [SerializeField] public Text gameOverText;
 
@@ -38,9 +40,8 @@ public class PlayerHealthAndWeapons : MonoBehaviour
             }
         }
 
-        if(player.transform.position.y <= -50)
+        if(player.transform.position.y <= lastPlatformReachedY - 100)
         {
-            Debug.Log("Dies here");
             //insert death logic
             gameOverPanel.SetActive(true);
             gameOverText.gameObject.SetActive(true);

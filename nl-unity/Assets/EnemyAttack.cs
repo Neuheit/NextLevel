@@ -38,8 +38,8 @@ public class EnemyAttack : MonoBehaviour
         if(other.gameObject == player)
         {
             playerInRange = true;
-            timeUntilYellow = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(1);
-            timeUntilRed = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(2);
+            timeUntilYellow = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(.25f);
+            timeUntilRed = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(.5f);
         }
     }
 

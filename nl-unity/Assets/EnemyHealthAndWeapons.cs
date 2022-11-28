@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealthAndWeapons : MonoBehaviour
 {
     public HealthSystem healthSys_;
+
+    public PlayerScore score;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,6 +18,7 @@ public class EnemyHealthAndWeapons : MonoBehaviour
     {   
         if(healthSys_.GetHealth() == 0){
             this.gameObject.SetActive(false);
+            score.score += 10;
         }
     }
 }
