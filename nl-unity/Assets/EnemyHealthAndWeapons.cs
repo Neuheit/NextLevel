@@ -18,7 +18,7 @@ public class EnemyHealthAndWeapons : MonoBehaviour
     {   
         if(healthSys_.GetHealth() == 0){
             this.gameObject.SetActive(false);
-            score.score += 10;
+            score.score += 1000;
         }
     }
 }

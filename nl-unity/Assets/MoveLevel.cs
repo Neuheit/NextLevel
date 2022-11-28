@@ -35,7 +35,7 @@ public class MoveLevel : MonoBehaviour
             currTarget = (currTarget == maxTarget) ? minTarget: maxTarget;
         }
     }
-    void OnCollisionStay(Collider other){
+    void OnCollisionStay(Collision other){
         if(other.gameObject.CompareTag("Player")){
             //move player along with the level
         }

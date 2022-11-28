@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerScore : MonoBehaviour
 {
-    public int score = -1;
+    public int score = 0;
+    
     public Text playerScore;
 
     public Text playerHeath;
+
+    public GameObject initialLevel;
 
     public PlayerHealthAndWeapons player;
 
@@ -20,6 +23,9 @@ public class PlayerScore : MonoBehaviour
 
    void Update()
     {
+        if(player.player.transform.position.y > score)
+            score += (int)(player.player.transform.position.y - initialLevel.transform.position.y) / 2;
+
         playerScore.text = "Score - " + score;
         playerHeath.text = "Heath - " + player.healthSys_.GetHealth();
     }

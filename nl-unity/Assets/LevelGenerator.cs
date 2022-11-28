@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,27 @@ public class LevelGenerator : MonoBehaviour
         int initialSpawns = 3;
         for(int i = 0; i < initialSpawns; ++i){
             SpawnLevel();
+        }
+        
+        var buffs = GameObject.FindGameObjectsWithTag("BuffBox");
+        foreach(var b in buffs)
+        {
+            b.GetComponent<MeshRenderer>().enabled = false;
+            b.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        var buffsP = GameObject.FindGameObjectsWithTag("BuffBox+");
+        foreach(var b in buffsP)
+        {
+            b.GetComponent<MeshRenderer>().enabled = false;
+            b.GetComponent<BoxCollider>().enabled = false;
+        }
+
+        var dBuffs = GameObject.FindGameObjectsWithTag("DeBuff");
+        foreach(var b in dBuffs)
+        {
+            b.GetComponent<MeshRenderer>().enabled = false;
+            b.GetComponent<BoxCollider>().enabled = false;
         }
     }
     private void Update(){
@@ -43,6 +65,8 @@ public class LevelGenerator : MonoBehaviour
                         );
         lastSpawnPosition = new Vector3(initialLevel.position.x, lastSpawnPosition.y, initialLevel.position.z) + offset;
         Transform newLevel = Instantiate(level, lastSpawnPosition, Quaternion.identity) as Transform;
+        AddBuffs(newLevel);
+        AddEnemies(newLevel);
         int rand = Random.Range(0, 5);
         if(rand == 0){//20% percent chance
             Debug.Log("generated");
@@ -50,6 +74,51 @@ public class LevelGenerator : MonoBehaviour
         }
         levels.Enqueue(newLevel);
     }
+
+    private void AddBuffs(Transform level)
+    {
+        var buffs = GameObject.FindGameObjectsWithTag("BuffBox").Where(x => x.transform.position.y > level.position.y).ToArray();
+        var buffsP = GameObject.FindGameObjectsWithTag("BuffBox+").Where(x => x.transform.position.y > level.position.y).ToArray();
+        var dBuffs = GameObject.FindGameObjectsWithTag("DeBuff").Where(x => x.transform.position.y > level.position.y).ToArray();
+
+        int rand = Random.Range(0, 4);
+        Debug.Log(rand);
+        if(rand == 0) //33% to spawn buffs
+        {
+            rand = Random.Range(0, buffs.Length - 1);
+            var buff = buffs[rand];
+            buff.GetComponent<MeshRenderer>().enabled = true;
+            buff.GetComponent<BoxCollider>().enabled = true;
+        }
+
+        rand = Random.Range(0, 4);
+        Debug.Log(rand);
+        if(rand == 0) //33% to spawn buffs
+        {
+            Debug.Log("Spawning");
+            foreach(var d in dBuffs)
+            {
+                d.GetComponent<MeshRenderer>().enabled = true;
+                d.GetComponent<BoxCollider>().enabled = true;
+            }
+        }
+
+        rand = Random.Range(0, 11);
+        Debug.Log(rand);
+        if(rand == 0) //10% to spawn buff+
+        {
+            rand = Random.Range(0, buffsP.Length - 1);
+            var buff = buffs[rand];
+            buff.GetComponent<MeshRenderer>().enabled = true;
+            buff.GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+
+    private void AddEnemies(Transform level)
+    {
+        //...
+    }
+
 
     private float DistanceY(float y1, float y2){
         return Mathf.Abs(y1 - y2);
