@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform initialLevel;
     [SerializeField] private Transform level;
     [SerializeField] private Transform player;
+    [SerializeField] private Transform enemyPrefab;
     public  Vector3 maxOffset = new Vector3( 20, 20,  20);
     public  Vector3 minOffset = new Vector3(-20, 20, -20);
     private Vector3 lastSpawnPosition;
@@ -69,7 +70,6 @@ public class LevelGenerator : MonoBehaviour
         AddEnemies(newLevel);
         int rand = Random.Range(0, 5);
         if(rand == 0){//20% percent chance
-            Debug.Log("generated");
             newLevel.gameObject.AddComponent<MoveLevel>();
         }
         levels.Enqueue(newLevel);
@@ -82,7 +82,6 @@ public class LevelGenerator : MonoBehaviour
         var dBuffs = GameObject.FindGameObjectsWithTag("DeBuff").Where(x => x.transform.position.y > level.position.y).ToArray();
 
         int rand = Random.Range(0, 4);
-        Debug.Log(rand);
         if(rand == 0) //33% to spawn buffs
         {
             rand = Random.Range(0, buffs.Length - 1);
@@ -92,10 +91,8 @@ public class LevelGenerator : MonoBehaviour
         }
 
         rand = Random.Range(0, 4);
-        Debug.Log(rand);
         if(rand == 0) //33% to spawn buffs
         {
-            Debug.Log("Spawning");
             foreach(var d in dBuffs)
             {
                 d.GetComponent<MeshRenderer>().enabled = true;
@@ -104,7 +101,6 @@ public class LevelGenerator : MonoBehaviour
         }
 
         rand = Random.Range(0, 11);
-        Debug.Log(rand);
         if(rand == 0) //10% to spawn buff+
         {
             rand = Random.Range(0, buffsP.Length - 1);
@@ -116,7 +112,18 @@ public class LevelGenerator : MonoBehaviour
 
     private void AddEnemies(Transform level)
     {
-        //...
+        int num = Random.Range(0,3);
+        Vector3 center = level.Find("LevelCenter").position;
+        Vector3 scale = level.localScale;
+        //for(int i = 0; i < num; ++i){
+            Vector3 newPos = new Vector3(
+                            center.x + Random.Range(-scale.x/2.0f, scale.x/2.0f),
+                            center.y + enemyPrefab.localScale.y,
+                            center.z + Random.Range(-scale.z/2.0f, scale.z/2.0f)
+                            );
+            var newEnemy = Instantiate(enemyPrefab, newPos, Quaternion.identity ) as Transform;
+            newEnemy.parent = level;
+        //}
     }
 
 

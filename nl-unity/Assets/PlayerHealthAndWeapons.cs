@@ -4,11 +4,9 @@ using UnityEngine.UI;
 
 public class PlayerHealthAndWeapons : MonoBehaviour
 {
-    public AudioSource AttackAudio;
     public AudioSource DeathAudio;
     public HealthSystem healthSys_;
     public GameObject player;
-    public Weapon meleeAttack_;
     private float attackInterval_;
     private float timeBetweenAttacks_;
 
@@ -20,9 +18,6 @@ public class PlayerHealthAndWeapons : MonoBehaviour
     private void Awake()
     {
         healthSys_       = new HealthSystem(100,100);
-        meleeAttack_     = new Weapon(20);
-        attackInterval_  = 0;
-        timeBetweenAttacks_ = 0.5f;
         gameOverPanel.SetActive(false);
         gameOverText.gameObject.SetActive(false);
     }
@@ -48,18 +43,18 @@ public class PlayerHealthAndWeapons : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        //dealing damage to ememies
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            if(Time.time > attackInterval_ && Input.GetAxis("Fire1") != 0){
-                AttackAudio.Play();
-                other.GetComponent<EnemyHealthAndWeapons>().healthSys_.ReduceHealth(meleeAttack_.DamageAmount());
-                attackInterval_ = Time.time + timeBetweenAttacks_;
-            }
-        }
-    }
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     //dealing damage to ememies
+    //     if(other.gameObject.CompareTag("Enemy"))
+    //     {
+    //         if(Time.time > attackInterval_ && Input.GetAxis("Fire1") != 0){
+    //             AttackAudio.Play();
+    //             other.GetComponent<EnemyHealthAndWeapons>().healthSys_.ReduceHealth(meleeAttack_.DamageAmount());
+    //             attackInterval_ = Time.time + timeBetweenAttacks_;
+    //         }
+    //     }
+    // }
 
     private void OnTriggerExit(Collider other)
     {

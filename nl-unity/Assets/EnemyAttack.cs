@@ -45,10 +45,9 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //dealing damage to ememies
+       // dealing damage to ememies
         if(other.gameObject == player)
         {
-            Debug.Log("here1");
 
             var renderer = GetComponent<MeshRenderer>();
 

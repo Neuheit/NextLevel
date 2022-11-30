@@ -11,6 +11,7 @@ public class EnemyHealthAndWeapons : MonoBehaviour
     void Awake()
     {
         healthSys_ = new HealthSystem(100,100);
+        score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScore>();
     }
 
     // Update is called once per frame

@@ -31,7 +31,7 @@ public class HealthSystem
         if(health_ < 0f){
             health_ = 0f;
         }
-        Debug.Log(health_);
+        //Debug.Log(health_);
     }
     public void ReduceStamina(float amount){
         stamina_ -= Mathf.Abs(amount);
