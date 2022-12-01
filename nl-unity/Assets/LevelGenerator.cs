@@ -12,6 +12,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform enemyPrefab;
     public  Vector3 maxOffset = new Vector3( 20, 20,  20);
     public  Vector3 minOffset = new Vector3(-20, 20, -20);
+
+    private Vector3 levelSize = new Vector3(28, 0, 28);
     private Vector3 lastSpawnPosition;
 
     private Queue<Transform> levels = new Queue<Transform>();
@@ -113,17 +115,17 @@ public class LevelGenerator : MonoBehaviour
     private void AddEnemies(Transform level)
     {
         int num = Random.Range(0,3);
+        level.gameObject.SetActive(true);
         Vector3 center = level.Find("LevelCenter").position;
-        Vector3 scale = level.localScale;
-        //for(int i = 0; i < num; ++i){
+        for(int i = 0; i < num; ++i){
             Vector3 newPos = new Vector3(
-                            center.x + Random.Range(-scale.x/2.0f, scale.x/2.0f),
+                            center.x + Random.Range(-levelSize.x/2.0f, levelSize.x/2.0f),
                             center.y + enemyPrefab.localScale.y,
-                            center.z + Random.Range(-scale.z/2.0f, scale.z/2.0f)
+                            center.z + Random.Range(-levelSize.z/2.0f, levelSize.z/2.0f)
                             );
             var newEnemy = Instantiate(enemyPrefab, newPos, Quaternion.identity ) as Transform;
             newEnemy.parent = level;
-        //}
+        }
     }
 
 
