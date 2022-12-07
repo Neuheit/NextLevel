@@ -47,7 +47,6 @@ public class MoveLevel : MonoBehaviour
     }
     void MovePlayer(Vector3 increment){
         if(movePlayer){
-            
             player.position += increment;
             movePlayer = false;
         }
@@ -55,9 +54,7 @@ public class MoveLevel : MonoBehaviour
     void OnCollisionStay(Collision other){
         if(other.gameObject.CompareTag("Player")){
             //make sure the player if fully above the level.
-            if(other.transform.position.y + 2> transform.position.y){
                 movePlayer = true;
-            }
         }
     }
     void SetTargets(){
